@@ -25,8 +25,6 @@ RUN apt-get update && \
 # Install motioneye, which will automatically pull Python dependencies (tornado, jinja2, pillow and pycurl)
 RUN pip install motioneye==$MOTIONEYE_VERSION
 
-RUN pip install pytz
-
 # Prepare the configuration directory and the media directory
 RUN mkdir -p /etc/motioneye \
     mkdir -p /var/lib/motioneye
