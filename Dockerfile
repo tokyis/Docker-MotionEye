@@ -11,6 +11,7 @@ ENV MOTIONEYE_VERSION="0.39.1"
 RUN apt-get update && \
     apt-get -y -f install \
         wget \
+        gdebi-core \
         motion \
         ffmpeg \
         v4l-utils \
@@ -25,7 +26,7 @@ RUN apt-get update && \
 
 # Install latest motion (4.1.1)
 RUN wget https://github.com/Motion-Project/motion/releases/download/release-4.1.1/bionic_motion_4.1.1-1_amd64.deb
-RUN apt-get -y -f install ./bionic_motion_4.1.1-1_amd64.deb
+RUN gdebi bionic_motion_4.1.1-1_amd64.deb
 
 # Install motioneye, which will automatically pull Python dependencies (tornado, jinja2, pillow and pycurl)
 RUN pip install motioneye==$MOTIONEYE_VERSION
