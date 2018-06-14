@@ -13,6 +13,7 @@ RUN apt-get update && \
         motion \
         ffmpeg \
         v4l-utils \
+        tzdata \
         python-pip \
         python-dev \
         curl \
