@@ -1,6 +1,6 @@
 # MotionEye
 
-FROM ubuntu:17.10
+FROM ubuntu:18.04
 
 LABEL maintainer="malvarez00@icloud.com"
 
