@@ -5,7 +5,7 @@ FROM ubuntu:17.10
 LABEL maintainer="malvarez00@icloud.com"
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV MOTIONEYE_VERSION="0.39"
+ENV MOTIONEYE_VERSION="0.39.1"
 
 # Install motion, ffmpeg, v4l-utils and the dependencies from the repositories
 RUN apt-get update && \
@@ -25,7 +25,7 @@ RUN apt-get update && \
 
 # Install latest motion (4.1.1)
 RUN wget https://github.com/Motion-Project/motion/releases/download/release-4.1.1/bionic_motion_4.1.1-1_amd64.deb
-RUN apt -y -f install ./bionic_motion_4.1.1-1_amd64.deb
+RUN apt-get -y -f install ./bionic_motion_4.1.1-1_amd64.deb
 
 # Install motioneye, which will automatically pull Python dependencies (tornado, jinja2, pillow and pycurl)
 RUN pip install motioneye==$MOTIONEYE_VERSION
