@@ -25,8 +25,9 @@ RUN apt-get update && \
      apt-get clean
 
 # Install latest motion (4.1.1)
-RUN wget https://github.com/Motion-Project/motion/releases/download/release-4.1.1/bionic_motion_4.1.1-1_amd64.deb
-RUN gdebi bionic_motion_4.1.1-1_amd64.deb
+RUN wget -O /tmp/motion_4.1.1-1_amd64.deb https://github.com/Motion-Project/motion/releases/download/release-4.1.1/bionic_motion_4.1.1-1_amd64.deb
+RUN gdebi -n /tmp/motion_4.1.1-1_amd64.deb
+RUN rm /tmp/motion_4.1.1-1_amd64.deb
 
 # Install motioneye, which will automatically pull Python dependencies (tornado, jinja2, pillow and pycurl)
 RUN pip install motioneye==$MOTIONEYE_VERSION
