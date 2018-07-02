@@ -5,14 +5,11 @@ FROM ubuntu:18.04
 LABEL maintainer="malvarez00@icloud.com"
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV MOTIONEYE_VERSION="0.39.1"
+ENV MOTIONEYE_VERSION="0.39.2"
 
 # Install motion, ffmpeg, v4l-utils and the dependencies from the repositories
 RUN apt-get update && \
     apt-get -y -f install \
-        wget \
-        gdebi-core \
-        motion \
         ffmpeg \
         v4l-utils \
         tzdata \
@@ -21,13 +18,31 @@ RUN apt-get update && \
         curl \
         libssl-dev \
         libcurl4-openssl-dev \
-        libjpeg-dev &&\
+        libjpeg-dev \
+        git \
+        autoconf \
+        automake \
+        build-essential \
+        pkgconf \
+        libtool \
+        libzip-dev \
+        libjpeg-dev \
+        libavformat-dev \
+        libavcodec-dev \
+        libavutil-dev \
+        libswscale-dev \
+        libavdevice-dev \
+        libwebp-dev &&\
      apt-get clean
 
-# Install latest motion (4.1.1)
-RUN wget -O /tmp/motion_4.1.1-1_amd64.deb https://github.com/Motion-Project/motion/releases/download/release-4.1.1/bionic_motion_4.1.1-1_amd64.deb
-RUN gdebi -n /tmp/motion_4.1.1-1_amd64.deb
-RUN rm /tmp/motion_4.1.1-1_amd64.deb
+# Install latest motion from git
+RUN cd ~ \
+    && git clone https://github.com/Motion-Project/motion.git \
+    && cd motion \
+    && autoreconf -fiv \
+    && ./configure \
+    && make \
+    && make install
 
 # Install motioneye, which will automatically pull Python dependencies (tornado, jinja2, pillow and pycurl)
 RUN pip install motioneye==$MOTIONEYE_VERSION
