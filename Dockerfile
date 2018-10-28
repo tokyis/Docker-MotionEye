@@ -33,6 +33,7 @@ RUN apt-get update && \
         libavutil-dev \
         libswscale-dev \
         libavdevice-dev \
+        libmicrohttpd-dev \
         libwebp-dev &&\
      apt-get clean
 
