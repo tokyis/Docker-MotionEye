@@ -5,7 +5,7 @@ FROM ubuntu:18.04
 LABEL maintainer="malvarez00@icloud.com"
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV MOTIONEYE_VERSION="0.39.2"
+ENV MOTIONEYE_VERSION="0.41"
 
 # Install motion, ffmpeg, v4l-utils and the dependencies from the repositories
 RUN apt-get update && \
